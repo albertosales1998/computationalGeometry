@@ -14,12 +14,13 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Algorithms utility = new Algorithms(readPoints(args));
-		utility.printPointsAndAmount();
+		//utility.printPointsAndAmount();
 		GeometricObject polygon = utility.polygonType();
 		polygon.setBoundaryColor(Color.BLUE);
 		polygon.setInteriorColor(Color.MAGENTA);
-		
+		System.out.println(polygon.toString());
 		FrameDisplay frame = new FrameDisplay(polygon);
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
