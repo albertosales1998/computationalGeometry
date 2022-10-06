@@ -14,6 +14,10 @@ public class Triangle extends GeometricObject{
 		return points.get(0);
 	}
 	
+	public Point getMiddle() {
+		return points.get(1);
+	}
+	
 	public Point getEnd() {
 		return points.get(2);
 	}
@@ -54,7 +58,7 @@ public class Triangle extends GeometricObject{
 	
 	public String toString() {
 		String str = "Triangle " + super.toString() + "\n";
-		str += getBegin() + "\n" + getEnd();
+		str += getBegin() + "\n" + getMiddle() + "\n" + getEnd();
 		return str;
 	}
 	
