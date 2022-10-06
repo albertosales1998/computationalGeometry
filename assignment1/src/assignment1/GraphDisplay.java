@@ -12,7 +12,8 @@ import java.awt.*;
 public class GraphDisplay extends JPanel
 {   
     Point p;
-    GeometricObject[] object;
+    GeometricObject[] objects;
+    GeometricObject object;
     
     
     public GraphDisplay(int frameWidth, int frameHeight, Point p) {
@@ -23,6 +24,14 @@ public class GraphDisplay extends JPanel
     }
 
     public GraphDisplay(int width, int height, GeometricObject[] g) {
+		// TODO Auto-generated constructor stub
+    	this.objects = g;
+    	
+    	Dimension d = new Dimension(width, height);
+    	setPreferredSize(d);
+	}
+    
+    public GraphDisplay(int width, int height, GeometricObject g) {
 		// TODO Auto-generated constructor stub
     	this.object = g;
     	
@@ -37,8 +46,6 @@ public class GraphDisplay extends JPanel
     public void paint(Graphics g)
     {        
         super.paint(g);
-        for(GeometricObject line : object) {
-        	line.draw(g);
-        }
+        object.draw(g);
     }
 }

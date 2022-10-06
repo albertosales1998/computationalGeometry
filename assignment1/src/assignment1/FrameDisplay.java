@@ -34,6 +34,16 @@ public class FrameDisplay extends JFrame
     	add(panel);
     	pack();
 	}
+    
+    public FrameDisplay(GeometricObject g) {
+		// TODO Auto-generated constructor stub
+    	setTitle("Graph Display");
+    	setSize(WIDTH, HEIGHT);
+    	
+    	panel = new GraphDisplay(WIDTH, HEIGHT, g);
+    	add(panel);
+    	pack();
+	}
 
 	public void repaint()
     {
