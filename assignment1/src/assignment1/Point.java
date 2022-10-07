@@ -79,5 +79,4 @@ public class Point extends GeometricObject{
 		x = x1;
 		y = y1;
 	}
-	
 }
