@@ -16,13 +16,13 @@ public class Main {
 		Algorithms utility = new Algorithms(readPoints(args));
 		//utility.printPointsAndAmount();
 		GeometricObject polygon = utility.polygonType();
-		polygon.setBoundaryColor(Color.BLUE);
-		polygon.setInteriorColor(Color.MAGENTA);
-		System.out.println(polygon.toString());
-		FrameDisplay frame = new FrameDisplay(polygon);
+		//polygon.setBoundaryColor(Color.BLUE);
+		//polygon.setInteriorColor(Color.MAGENTA);
+		//System.out.println(polygon.toString());
+		//FrameDisplay frame = new FrameDisplay(polygon);
 		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.setVisible(true);
 	}
 	
 	public static List<Integer[]> readPoints(String[] args) {

@@ -5,9 +5,23 @@ import java.util.ArrayList;
 
 public class Triangle extends GeometricObject{
 	ArrayList<Point> points;
+	double[] sideLengths; //each index corresponds to the beginning point so side(0) is side->p0p1, side(2) is side -> p2p0
 	
 	public Triangle(ArrayList<Point> points) {
 		this.points = points;
+		sideLengths = calculateSideLengths();
+	}
+	
+	public double[] calculateSideLengths() {
+		return new double[] {
+				pointDistance(points.get(0), points.get(1)),
+				pointDistance(points.get(1), points.get(2)),
+				pointDistance(points.get(2), points.get(0))
+		};
+	}
+	
+	public double pointDistance(Point p0, Point p1) {
+		return Math.sqrt(Math.pow(p1.getX() - p0.getX(), 2) + Math.pow(p1.getY() - p0.getY(), 2));
 	}
 	
 	public Point getBegin() {
@@ -21,6 +35,7 @@ public class Triangle extends GeometricObject{
 	public Point getEnd() {
 		return points.get(2);
 	}
+	
 	
 	@Override
 	public void draw(Graphics g) {
