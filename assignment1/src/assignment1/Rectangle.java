@@ -1,10 +1,12 @@
 package assignment1;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 public class Rectangle extends GeometricObject{
 	private Point begin;
 	private Point end;
+	public ArrayList<Point> points;
 	
 	public Rectangle() {
 		begin = new Point(0, 0);
