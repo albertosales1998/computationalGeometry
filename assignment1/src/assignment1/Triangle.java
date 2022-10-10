@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Triangle extends GeometricObject{
 	ArrayList<Point> points;
-	double[] sideLengths; //each index corresponds to the beginning point so side(0) is side->p0p1, side(2) is side -> p2p0
+	double[] sideLengths; //each index corresponds to the beginning point so side(0) is side->p0p1, also last side side[2]
 	
 	public Triangle(ArrayList<Point> points) {
 		this.points = points;
@@ -34,6 +34,10 @@ public class Triangle extends GeometricObject{
 	
 	public Point getEnd() {
 		return points.get(2);
+	}
+	
+	public double getSideLength(int i) {
+		return sideLengths[i];
 	}
 	
 	
@@ -73,7 +77,8 @@ public class Triangle extends GeometricObject{
 	
 	public String toString() {
 		String str = "Triangle " + super.toString() + "\n";
-		str += getBegin() + "\n" + getMiddle() + "\n" + getEnd();
+		str += getBegin() + "\n" + getMiddle() + "\n" + getEnd() + "\n";
+		str += "Side 1: " + getSideLength(0) + "        Side 2: " + getSideLength(1) + "           Side 3: " + getSideLength(2);
 		return str;
 	}
 	

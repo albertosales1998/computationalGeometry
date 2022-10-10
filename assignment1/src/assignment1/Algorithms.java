@@ -44,12 +44,21 @@ public class Algorithms {
 	}
 	
 	public GeometricObject determineQuadrilateral() {
-		Triangle[] triangles = getInnerTriangles(); //have triangles array, need to calculate the midpoint angle of each triangle using law of cosines
+		Triangle[] triangles = getInnerTriangles();
+		for(Triangle t : triangles) System.out.println(t.toString());
 		
-		return null;
+		for(Triangle t : triangles) {
+			if(pythagoreanTheoremEquality(t.getSideLength(0), t.getSideLength(1), t.getSideLength(2)) != true || t.getSideLength(0) == t.getSideLength(1)) { // test if right triangle does not exist or if two perpendicular sides are equal (i.e. a square)
+				System.out.println("False!");
+				System.out.println(Math.pow(t.getSideLength(0), 2) + Math.pow(t.getSideLength(1), 2) + " " + Math.pow(t.getSideLength(2), 2));
+				return new Quadrilateral(points);
+			}
+		}
+		System.out.println("True!");
+		return new Rectangle(points.get(0), points.get(2));
 	}
 	
-	public Triangle[] getInnerTriangles() {
+	public Triangle[] getInnerTriangles() { //have to change change hardcode to dynamic for rectilinear polygons for any 'n' vertices
 		ArrayList<Point> triangleP0P2 = new ArrayList<Point>(List.of(points.get(0), points.get(1), points.get(2)));
 		ArrayList<Point> triangleP1P3 = new ArrayList<Point>(List.of(points.get(1), points.get(2), points.get(3)));
 		ArrayList<Point> triangleP2P0 = new ArrayList<Point>(List.of(points.get(2), points.get(3), points.get(0)));
@@ -61,5 +70,9 @@ public class Algorithms {
 				new Triangle(triangleP2P0),
 				new Triangle(triangleP3P1)
 		};
+	}
+	
+	public boolean pythagoreanTheoremEquality(double side0, double side1, double side2) {
+		return Math.round(Math.pow(side0, 2) + Math.pow(side1, 2)) == Math.round(Math.pow(side2, 2));
 	}
 }
