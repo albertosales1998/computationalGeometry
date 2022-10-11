@@ -39,8 +39,23 @@ public class Algorithms {
 		switch(numVertices) {
 		case 3: return new Triangle(points);
 		case 4: return determineQuadrilateral();
+		default: return determinePolygon();
 		}
-		return null;
+	}
+	
+	public GeometricObject determinePolygon() {
+		Triangle[] triangles = getInnerTriangles();
+		for(Triangle t : triangles) System.out.println(t.toString());
+		
+		for(Triangle t : triangles) {
+			if(pythagoreanTheoremEquality(t.getSideLength(0), t.getSideLength(1), t.getSideLength(2)) != true) { // if right triangle does not exist, than move onto the convex case
+				System.out.println("Not a rectilinear polygon");
+				System.out.println(Math.pow(t.getSideLength(0), 2) + Math.pow(t.getSideLength(1), 2) + " " + Math.pow(t.getSideLength(2), 2));
+				// determineIfConvex(); <---- LEFT OFF HERE; need to implement this method to return a convex or simple polygon
+			}
+		}
+		System.out.println("True!!"); // <---- disregard trueth statement if testing nonrectilinear polygons, needs return for convex function
+		return new RectilinearPolygon(points);
 	}
 	
 	public GeometricObject determineQuadrilateral() {
@@ -58,19 +73,13 @@ public class Algorithms {
 		return new Rectangle(points.get(0), points.get(2));
 	}
 	
-	public Triangle[] getInnerTriangles() { //have to change change hardcode to dynamic for rectilinear polygons for any 'n' vertices
-		ArrayList<Point> triangleP0P2 = new ArrayList<Point>(List.of(points.get(0), points.get(1), points.get(2)));
-		ArrayList<Point> triangleP1P3 = new ArrayList<Point>(List.of(points.get(1), points.get(2), points.get(3)));
-		ArrayList<Point> triangleP2P0 = new ArrayList<Point>(List.of(points.get(2), points.get(3), points.get(0)));
-		ArrayList<Point> triangleP3P1 = new ArrayList<Point>(List.of(points.get(3), points.get(0), points.get(1)));
+	public Triangle[] getInnerTriangles() {
+		Triangle[] triangles = new Triangle[points.size()];
+		for(int i = 0; i < points.size(); i++) triangles[i] = (new Triangle(new ArrayList<Point>(List.of(points.get(i), points.get((i + 1)%points.size()), points.get((i + 2)%points.size())))));
 		
-		return new Triangle[] {
-				new Triangle(triangleP0P2),
-				new Triangle(triangleP1P3),
-				new Triangle(triangleP2P0),
-				new Triangle(triangleP3P1)
-		};
+		return triangles;
 	}
+	
 	
 	public boolean pythagoreanTheoremEquality(double side0, double side1, double side2) {
 		return Math.round(Math.pow(side0, 2) + Math.pow(side1, 2)) == Math.round(Math.pow(side2, 2));
