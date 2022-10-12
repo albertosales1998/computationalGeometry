@@ -23,6 +23,10 @@ public class Vector {
 		if(angle < 0) angle += 360;
 		return angle;
 	}
+	
+	public double dotProduct(Vector b) {
+		return this.x*b.getX() + this.y*b.getY();
+	}
 
 	public double getX() {
 		return x;
