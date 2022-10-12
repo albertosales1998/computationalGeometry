@@ -51,11 +51,26 @@ public class Algorithms {
 			if(pythagoreanTheoremEquality(t.getSideLength(0), t.getSideLength(1), t.getSideLength(2)) != true) { // if right triangle does not exist, than move onto the convex case
 				System.out.println("Not a rectilinear polygon");
 				System.out.println(Math.pow(t.getSideLength(0), 2) + Math.pow(t.getSideLength(1), 2) + " " + Math.pow(t.getSideLength(2), 2));
-				// determineIfConvex(); <---- LEFT OFF HERE; need to implement this method to return a convex or simple polygon
+				return determineIfConvex();
 			}
 		}
-		System.out.println("True!!"); // <---- disregard trueth statement if testing nonrectilinear polygons, needs return for convex function
+		System.out.println("True!!"); 
 		return new RectilinearPolygon(points);
+	}
+	
+	public double determinant(Point p0, Point p1, Point p2) {
+		return (p0.getX()*p1.getY() + p1.getX()*p2.getY() + p2.getX()*p0.getY()) - (p1.getX()*p0.getY() + p2.getX()*p1.getY() + p0.getX()*p2.getY());
+	}
+	
+	public GeometricObject determineIfConvex() { // will test every point in points array by creating vectors and carrying out cross products
+		for(int i = 0; i < points.size(); i++) {
+			Point p0 = points.get(i);
+			Point p1 = points.get((i + 1)%points.size());
+			Point p2 = points.get((i + 2)%points.size());
+			
+			if(determinant(p0, p1, p2) < 0) return new SimplePolygon(points);
+		}
+		return new ConvexPolygon(points);
 	}
 	
 	public GeometricObject determineQuadrilateral() {
