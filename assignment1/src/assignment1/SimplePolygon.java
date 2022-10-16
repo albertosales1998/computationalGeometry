@@ -4,27 +4,23 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class SimplePolygon extends GeometricObject{
-	public ArrayList<Point> points;
+	private ArrayList<Point> points;
 	
 	public SimplePolygon(ArrayList<Point> points) {
 		this.points = points;
-	}
-
-	public ArrayList<Point> getPoints() {
-		return points;
 	}
 
 	public Point getVertex(int i) {
 		return points.get(i);
 	}
 	
-	public int[] getXCoordinates() {
+	private int[] getXCoordinates() {
 		int[] xCoordinates = new int[points.size()];
 		for(int i = 0; i < points.size(); i++) xCoordinates[i] = (int) points.get(i).getX(); 
 		return xCoordinates;
 	}
 	
-	public int[] getYCoordinates() {
+	private int[] getYCoordinates() {
 		int[] yCoordinates = new int[points.size()];
 		for(int i = 0; i < points.size(); i++) yCoordinates[i] = (int) points.get(i).getY(); 
 		return yCoordinates;
@@ -40,11 +36,15 @@ public class SimplePolygon extends GeometricObject{
 		g.setColor(getBoundaryColor());
 		g.drawPolygon(getXCoordinates(), getYCoordinates(), points.size());
 	}
+
+	public String getShapeName(){
+		return "This shape is a simple polygon";
+	}
 	
 	public String toString() {
-		String str = "Simple Polygon " + super.toString() + "\n";
-		for(int i = 0; i < points.size(); i++) str += getVertex(i) + "\n";
+		StringBuilder str = new StringBuilder("Simple Polygon " + super.toString() + "\n");
+		for(int i = 0; i < points.size(); i++) str.append(getVertex(i)).append("\n");
 		
-		return str;
+		return str.toString();
 	}
 }
