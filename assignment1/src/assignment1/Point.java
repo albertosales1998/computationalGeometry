@@ -66,6 +66,11 @@ public class Point extends GeometricObject{
 		// TODO Auto-generated method stub
 		this.interiorColor = color;
 	}
+
+	@Override
+	public String getShapeName(){
+		return "This shape is a point";
+	}
 	
 	public void rotate(double angle) {
 		double angleRadians = Math.toRadians(angle);

@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class Quadrilateral extends GeometricObject{
-	public ArrayList<Point> points;
+	private ArrayList<Point> points;
 	
 	public Quadrilateral(ArrayList<Point> points) {
 		this.points = points;
@@ -13,6 +13,10 @@ public class Quadrilateral extends GeometricObject{
 	public Point getVertex(int i) {
 		return points.get(i);
 	}
+
+	public String getShapeName(){
+		return "This shape is a quadrilateral, but not a rectangle";
+}
 	
 	@Override
 	public void draw(Graphics g) {

@@ -13,8 +13,6 @@ abstract public class GeometricObject
 {
     private Color boundaryColor;    //boundary color
     private Color interiorColor;    //interior color
-    private double x;
-    private double y;
 
     /**
      * Default constructor; sets object to default colors.
@@ -74,8 +72,10 @@ abstract public class GeometricObject
     }
      
      public void translate(Vector v) {
-    	 x += v.getX();
-    	 y += v.getY();
+     }
+
+     public String getShapeName(){
+         return "";
      }
 
     @Override

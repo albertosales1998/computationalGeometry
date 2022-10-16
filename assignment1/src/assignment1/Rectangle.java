@@ -1,13 +1,11 @@
 package assignment1;
 
-import java.awt.Graphics;
-import java.util.ArrayList;
+import java.awt.*;
 
 public class Rectangle extends GeometricObject{
 	private Point begin;
 	private Point end;
-	public ArrayList<Point> points;
-	
+
 	public Rectangle() {
 		begin = new Point(0, 0);
 		end = new Point(1, 1);
@@ -48,11 +46,11 @@ public class Rectangle extends GeometricObject{
 	}
 	
 	public double greatestX() {
-		return begin.getX() > end.getX() ? begin.getX():end.getX();
+		return Math.max(begin.getX(), end.getX());
 	}
 	
 	public double greatestY() {
-		return begin.getY() > end.getY() ? begin.getY():end.getY();
+		return Math.max(begin.getY(), end.getY());
 	}
 	
 	public double height() {
@@ -60,17 +58,22 @@ public class Rectangle extends GeometricObject{
 	}
 	
 	public double smallestX() {
-		return begin.getX() < end.getX() ? begin.getX():end.getX();
+		return Math.min(begin.getX(), end.getX());
 	}
 	
 	public double smallestY() {
-		return begin.getY() < end.getY() ? begin.getY():end.getY();
+		return Math.min(begin.getY(), end.getY());
 	}
 	
 	public String toString() {
 		String str = "Rectangle " + super.toString() + "\n";
 		str += begin + "\n" + end;
 		return str;
+	}
+
+	@Override
+	public String getShapeName(){
+		return "This shape is a rectangle";
 	}
 	
 	public void translate(Vector v) {

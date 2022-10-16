@@ -49,6 +49,11 @@ public class LineSegment extends GeometricObject
                    (int)end.getX(), (int)end.getY());
     }
 
+    @Override
+    public String getShapeName(){
+        return "This shape is a line segment";
+    }
+
     /**
      * Returns the "begin" point of this line segment.
      * 
@@ -96,7 +101,7 @@ public class LineSegment extends GeometricObject
      */
     public double greatestX()
     {
-        return begin.getX() > end.getX() ? begin.getX() : end.getX();
+        return Math.max(begin.getX(), end.getX());
     }
 
     /**
@@ -106,7 +111,7 @@ public class LineSegment extends GeometricObject
      */
     public double greatestY()
     {
-        return begin.getY() > end.getY() ? begin.getY() : end.getY();
+        return Math.max(begin.getY(), end.getY());
     }
 
     /**
@@ -116,7 +121,7 @@ public class LineSegment extends GeometricObject
      */
     public double smallestX()
     {
-        return begin.getX() < end.getX() ? begin.getX() : end.getX();
+        return Math.min(begin.getX(), end.getX());
     }
 
     /**
@@ -126,7 +131,7 @@ public class LineSegment extends GeometricObject
      */
     public double smallestY()
     {
-        return begin.getY() < end.getY() ? begin.getY() : end.getY();
+        return Math.min(begin.getY(), end.getY());
     }
 
     /**

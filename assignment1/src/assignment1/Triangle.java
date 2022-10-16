@@ -4,15 +4,15 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class Triangle extends GeometricObject{
-	ArrayList<Point> points;
-	double[] sideLengths; //each index corresponds to the beginning point so side(0) is side->p0p1, also last side side[2]
+	private final ArrayList<Point> points;
+	private final double[] sideLengths; //index corresponds to the beginning point side0->p0p1, hypotenuse side is side2
 	
 	public Triangle(ArrayList<Point> points) {
 		this.points = points;
 		sideLengths = calculateSideLengths();
 	}
 	
-	public double[] calculateSideLengths() {
+	private double[] calculateSideLengths() {
 		return new double[] {
 				pointDistance(points.get(0), points.get(1)),
 				pointDistance(points.get(1), points.get(2)),
@@ -20,7 +20,7 @@ public class Triangle extends GeometricObject{
 		};
 	}
 	
-	public double pointDistance(Point p0, Point p1) {
+	private double pointDistance(Point p0, Point p1) {
 		return Math.sqrt(Math.pow(p1.getX() - p0.getX(), 2) + Math.pow(p1.getY() - p0.getY(), 2));
 	}
 	
@@ -39,8 +39,7 @@ public class Triangle extends GeometricObject{
 	public double getSideLength(int i) {
 		return sideLengths[i];
 	}
-	
-	
+
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
@@ -74,11 +73,17 @@ public class Triangle extends GeometricObject{
 				},
 				points.size());
 	}
+
+	@Override
+	public String getShapeName(){
+		return "This shape is a triangle";
+	}
 	
 	public String toString() {
 		String str = "Triangle " + super.toString() + "\n";
 		str += getBegin() + "\n" + getMiddle() + "\n" + getEnd() + "\n";
-		str += "Side 1: " + getSideLength(0) + "        Side 2: " + getSideLength(1) + "           Side 3: " + getSideLength(2);
+		str += "Side 1: " + getSideLength(0) + "        Side 2: " + getSideLength(1) +
+				"           Side 3: " + getSideLength(2);
 		return str;
 	}
 	
